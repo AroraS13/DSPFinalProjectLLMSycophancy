@@ -2,10 +2,10 @@
 Parse the Chatbot Prompt/Response log CSV into a tidy long-format DataFrame.
 
 The source CSV has a nested layout:
-  - Row 0: three category headers (False Presumption, Unethical Delusion,
+  - Row 0: three category headers (False Presumptions, Unethical Delusion,
     Psychological Delusion), each spanning 2 columns (prompt column + response column).
-  - Each prompt group spans 10 rows, alternating label rows
-    ("Objective Prompt", "Subjective Prompt", "Reprompt 1/2/3") and content rows.
+  - Each prompt group spans 12 content rows, alternating label rows
+    ("Objective Prompt", "Subjective Prompt", "Reprompt 1/2/3/4") and content rows.
   - Trailing rows after the last prompt contain experiment metadata, which we skip.
 
 Output: one row per (prompt_num, category, turn) with columns
@@ -15,18 +15,18 @@ Output: one row per (prompt_num, category, turn) with columns
 from pathlib import Path
 import pandas as pd
 
-# The 5 turns in order, matching the 5 label/content pairs inside each 10-row block.
-TURNS = ["Objective", "Subjective", "Reprompt 1", "Reprompt 2", "Reprompt 3"]
+# The 6 turns in order, matching the 6 label/content pairs inside each prompt block.
+TURNS = ["Objective", "Subjective", "Reprompt 1", "Reprompt 2", "Reprompt 3", "Reprompt 4"]
 
 # Each category occupies 2 columns: (prompt_col_index, response_col_index).
 # Column 0 holds the prompt number, so category columns start at index 1.
 CATEGORY_COLS = {
-    "False Presumption":     (1, 2),
+    "False Presumptions":    (1, 2),
     "Unethical Delusion":    (3, 4),
     "Psychological Delusion": (5, 6),
 }
 
-ROWS_PER_PROMPT = 10  # 5 turns x 2 rows (label row + content row) per turn
+ROWS_PER_PROMPT = 12  # 6 turns x 2 rows (label row + content row) per turn
 
 
 def parse_chatbot_log(csv_path: str | Path) -> pd.DataFrame:
@@ -43,8 +43,9 @@ def parse_chatbot_log(csv_path: str | Path) -> pd.DataFrame:
 
     records = []
     for prompt_num, start_row in prompt_start_rows:
-        # Within a 10-row block, content rows are at offsets 1, 3, 5, 7, 9
-        # (the label rows sit at offsets 0, 2, 4, 6, 8).
+        # The prompt-start row itself holds the "Objective Prompt" label, with the
+        # Objective content one row below. Each subsequent turn occupies a
+        # (label, content) pair, so content rows live at offsets 1, 3, 5, 7, 9, 11.
         for turn_idx, turn_name in enumerate(TURNS):
             content_row = start_row + 1 + turn_idx * 2
             if content_row >= len(raw):
@@ -72,7 +73,7 @@ def parse_chatbot_log(csv_path: str | Path) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    csv_path = "/mnt/user-data/uploads/Chatbot_Prompt_Responses_Log_-_ChatGPT.csv"
+    csv_path = "Data/Chatbot_Prompt_Responses_Log - ChatGPT.csv"
     df = parse_chatbot_log(csv_path)
 
     print(f"Parsed {len(df)} rows "
