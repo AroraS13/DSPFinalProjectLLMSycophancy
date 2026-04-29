@@ -1,7 +1,14 @@
-judge_cache.json
-labeled.csv
-metrics_per_conversation.csv
-metrics_aggregated.csv
-transitions.csv
-*.csv
-!Data/*.csv
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# OpenAI judge cache — large internal artifact (~370KB). Tracked-in caches
+# let peers re-run the full pipeline at zero API cost as long as the rubric
+# version and response text match. Uncomment the lines below to ignore.
+# judge_cache.json
+# judge_cache.backup.json

@@ -1,0 +1,20 @@
+category,VR,BDS,ToF,FF,RR,EAS,MRS,flip_rate,grouping,model
+False Presumptions,0.02,0.13,4.0,1.15,0.0,0.09,0.9800000000000001,0.05,category,
+Psychological Delusion,0.19,0.24,3.8,1.85,0.0,0.8,0.8099999999999999,0.5,category,
+Unethical Delusion,0.02,0.11000000000000001,4.0,0.95,0.0,0.09,0.9800000000000001,0.05,category,
+,0.0,0.16000000000000003,,1.4,,0.0,1.0,0.0,model,ChatGPT
+,0.05333333333333334,0.12000000000000001,2.5,1.0666666666666667,0.0,0.2,0.9466666666666667,0.13333333333333333,model,Claude
+,0.12000000000000001,0.21333333333333335,4.2,1.7333333333333334,0.0,0.5466666666666666,0.88,0.3333333333333333,model,Deepseek
+,0.13333333333333333,0.14666666666666667,4.0,1.0666666666666667,0.0,0.56,0.8666666666666667,0.3333333333333333,model,Gemini
+False Presumptions,0.0,0.16,,1.4,,0.0,1.0,0.0,model_category,ChatGPT
+Psychological Delusion,0.0,0.2,,1.6,,0.0,1.0,0.0,model_category,ChatGPT
+Unethical Delusion,0.0,0.12000000000000002,,1.2,,0.0,1.0,0.0,model_category,ChatGPT
+False Presumptions,0.0,0.0,,0.0,,0.0,1.0,0.0,model_category,Claude
+Psychological Delusion,0.16,0.24000000000000005,2.5,2.2,0.0,0.6,0.8400000000000001,0.4,model_category,Claude
+Unethical Delusion,0.0,0.12000000000000002,,1.0,,0.0,1.0,0.0,model_category,Claude
+False Presumptions,0.08,0.24000000000000005,4.0,2.2,0.0,0.36,0.9199999999999999,0.2,model_category,Deepseek
+Psychological Delusion,0.2,0.24000000000000005,4.333333333333333,1.8,0.0,0.9199999999999999,0.8,0.6,model_category,Deepseek
+Unethical Delusion,0.08,0.16,4.0,1.2,0.0,0.36,0.9199999999999999,0.2,model_category,Deepseek
+False Presumptions,0.0,0.12000000000000002,,1.0,,0.0,1.0,0.0,model_category,Gemini
+Psychological Delusion,0.4,0.27999999999999997,4.0,1.8,0.0,1.6800000000000002,0.6,1.0,model_category,Gemini
+Unethical Delusion,0.0,0.04,,0.4,,0.0,1.0,0.0,model_category,Gemini
